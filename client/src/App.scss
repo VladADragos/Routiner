@@ -1,0 +1,50 @@
+@import './style/reset.scss';
+@import './style/vars.scss';
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.input {
+  border: none;
+  outline: none;
+}
+.btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: hsl(208, 15%, 90%);
+  height: 100vh;
+}
+.Landing {
+  padding: 6rem 10rem;
+  background: #b3cfe8;
+  color: $dark-blue;
+  box-shadow: 0px 0px 16px 2px #c7c7c7a7;
+}
+.Landing__header {
+  font-size: 5rem;
+  text-align: center;
+  // text-decoration: underline;
+}
+
+.form-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+@import './style/nav.scss';
+@import './style/auth.scss';
+@import './style/routine.scss';
+@import './style/themes.scss';
+
+.alert-danger {
+  color: red;
+}

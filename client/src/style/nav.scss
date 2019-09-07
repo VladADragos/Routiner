@@ -1,0 +1,27 @@
+.Nav {
+  width: 85%;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-links {
+  color: black;
+  font-size: 2.5rem;
+  display: flex;
+  list-style: none;
+}
+.nav-links__link {
+  &:hover {
+    text-decoration: underline;
+  }
+  margin-right: 2rem;
+}
+.Header {
+  color: $dark-blue;
+  font-size: 6.5rem;
+  font-weight: 700;
+}
+.logo-highlight {
+  color: $orange;
+}

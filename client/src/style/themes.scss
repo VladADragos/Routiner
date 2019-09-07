@@ -1,0 +1,36 @@
+.winter {
+  .routine-item__header {
+    color: $winter-color;
+    color: white;
+    background: $winter-background url('./images/winter.jpg');
+    background-size: cover;
+    background-blend-mode: multiply;
+  }
+}
+.autumn {
+  .routine-item__header {
+    color: $autumn-color;
+    color: white;
+    background: $autumn-background url('./images/autumn.jpg');
+    background-size: cover;
+    background-blend-mode: multiply;
+  }
+}
+.spring {
+  .routine-item__header {
+    color: $spring-color;
+    color: white;
+    background: $spring-background url('./images/spring.jpg');
+    background-size: cover;
+    background-blend-mode: multiply;
+  }
+}
+.summer {
+  .routine-item__header {
+    color: $summer-color;
+    color: white;
+    background: $summer-background url('./images/summer.jpg');
+    background-size: cover;
+    background-blend-mode: multiply;
+  }
+}

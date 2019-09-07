@@ -10,11 +10,13 @@ const auth = require('../middleware/auth');
 // @route   GET api/auth
 // @desc    Get logged in user
 // @access  Private
-router.get('/', auth, async (res, req) => {
+router.get('/', auth, async (req, res) => {
   try {
+    // res.json({ msg: 'ok' });
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (err) {
+    console.error(err.message);
     res.status(500).send('Server error');
   }
 });
@@ -39,6 +41,7 @@ router.post(
     try {
       let user = await User.findOne({ name });
       if (!user) {
+        console.log('no user found');
         return res.status(400).json({ msg: 'Invalid credentials' });
       }
 

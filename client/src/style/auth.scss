@@ -1,0 +1,45 @@
+// .Auth-form {
+// }
+.Auth-form__label {
+  font-size: 3rem;
+  margin-right: 1rem;
+}
+
+.Auth-form__input {
+  margin-top: 2rem;
+  font-size: 2.2rem;
+  background: $white;
+
+  color: hsl(0, 0%, 16%);
+  border: 0.3rem $dark-blue solid;
+  // border-radius: 50rem;
+  padding: 0.5rem 1rem;
+}
+.Auth-form__submit {
+  border: $dark-blue 0.3rem solid;
+  padding: 0.25rem 2rem;
+  font-size: 3.5rem;
+  color: $white;
+  background: $dark-blue;
+}
+.Auth-form__bottom {
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Auth-form__register-text {
+  font-size: 3.5rem;
+  margin-left: 2rem;
+}
+.Auth-form__register-highlight {
+  font-size: 1.6rem;
+  margin-right: 1rem;
+}
+.Auth-form__register-link {
+  color: $dark-blue;
+}
+.container {
+  width: 80%;
+  height: 100%;
+}

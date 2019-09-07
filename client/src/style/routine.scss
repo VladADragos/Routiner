@@ -1,0 +1,135 @@
+.routines-grid {
+  margin-top: 2rem;
+  width: 85%;
+  display: grid;
+  grid-gap: 6rem;
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+}
+
+.routine-item {
+  // border: 3px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+  background: #f6f6f6;
+  box-shadow: 0rem 0rem 0.5rem 0.2rem rgb(204, 204, 204);
+}
+
+.routine-item__header {
+  color: #003b4a;
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0rem;
+  font-size: 3.5rem;
+  font-weight: 600;
+  background: #b3dde8;
+  margin: 0rem;
+}
+.routine-item__list {
+  font-size: 2rem;
+  width: 70%;
+  margin: 0rem;
+  padding: 0rem;
+  list-style: none;
+}
+.routine-item__buttons {
+  margin: 1rem 0rem;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+.routine-item__button {
+  border: 3px solid $black;
+  padding: 0.2rem 2rem;
+  font-size: 2rem;
+  &:hover {
+    color: $white;
+    background: $black;
+  }
+}
+
+.routine-form {
+  height: 100%;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+}
+.routine-item__button {
+  align-self: center;
+}
+.season-select {
+  font-size: 1.6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+.hidden {
+  display: none;
+}
+i {
+  margin: 0rem;
+  padding: 0rem;
+}
+.season-select__option {
+  text-align: center;
+
+  border: 2px solid rgb(201, 201, 201);
+  font-size: 2.5rem;
+  padding: 0.5rem;
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(201, 201, 201);
+  }
+}
+input[type='radio']:checked + {
+  [data-season='winter'] {
+    border: 2px solid hsl(193, 100%, 77%);
+    label {
+      color: hsl(193, 100%, 77%);
+    }
+  }
+  [data-season='autumn'] {
+    border: 2px solid hsl(36, 87%, 65%);
+    label {
+      color: hsl(36, 87%, 65%);
+    }
+  }
+  [data-season='spring'] {
+    border: 2px solid hsl(122, 50%, 50%);
+    label {
+      color: hsl(122, 50%, 50%);
+    }
+  }
+  [data-season='summer'] {
+    border: 2px solid hsl(46, 100%, 68%);
+    label {
+      color: hsl(46, 100%, 68%);
+    }
+  }
+}
+
+.btn--add {
+  color: $white;
+  background: $black;
+}
+
+.input-group {
+  label {
+    font-size: 2.5rem;
+    margin-right: 0.5rem;
+  }
+  input {
+    border: none;
+    font-size: 2rem;
+    background: none;
+    border: #003b4a 2px solid;
+    width: 18ch;
+  }
+  margin-bottom: 1rem;
+}

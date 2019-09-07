@@ -1,0 +1,14 @@
+html {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 62.5%; /*  sets font size to 10px, 10/16  */
+}
+
+body {
+  padding: 0rem;
+  margin: 0rem;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}

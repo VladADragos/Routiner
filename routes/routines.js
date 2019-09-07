@@ -8,16 +8,25 @@ const auth = require('../middleware/auth');
 // @access  Private
 router.get('/', auth, async (req, res) => {
   try {
-    // const routine = new Routine({
-    //   user: req.user.id,
-    //   name: 'testtt'
-    // });
     const routines = await Routine.find({ user: req.user.id }).sort({
       date: -1
     });
 
     // routine.save();
     res.json(routines);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+// @route   GET api/routines
+// @desc    Get current routine of user
+// @access  Private
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const routine = await Routine.find({ _id: req.params.id });
+
+    res.json(routine);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

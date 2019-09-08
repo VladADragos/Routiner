@@ -3,6 +3,7 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import Navbar from '../layout/Navbar';
 import RoutineContext from '../../context/routine/routineContext';
 import UserContext from '../../context/user/userContext';
+import Activity from './Activity';
 
 const Routine = props => {
   const routineContext = useContext(RoutineContext);
@@ -21,20 +22,25 @@ const Routine = props => {
     // eslint-disable-next-line
   }, []);
 
-  const log = () => {
-    console.log(current);
-  };
-
   if (!isLoading && current != null) {
     return (
       <Fragment>
         <Navbar />
-        <div className='routine-grid'>testtets</div>;
-        <button onClick={log}> click </button>
-        {/* {
-          routineContext.map()
-        } */}
-        {current.name}
+        <div className='routine-grid'>
+          <div className='day day--selected'>
+            <h2 className='day__header'>Monday</h2>
+            <Activity activity='angular' />
+            <Activity activity='vuejs' />
+            <Activity activity='raspberry-pi' />
+            <Activity activity='raspberry-pi' />
+            <Activity activity='python' />
+          </div>
+          <div className='day'>asd</div>
+          <div className='day'>asd</div>
+          <div className='day'>asd</div>
+          <div className='day'>asd</div>
+        </div>
+        ;
       </Fragment>
     );
   } else {

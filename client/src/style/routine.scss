@@ -22,9 +22,10 @@
   text-align: center;
   padding: 1rem 0rem;
   font-size: 3.5rem;
-  font-weight: 600;
+  // font-weight: 600;
   background: #b3dde8;
   margin: 0rem;
+  font-family: 'Pacifico', cursive;
 }
 .routine-item__list {
   font-size: 2rem;
@@ -38,6 +39,9 @@
   width: 70%;
   display: flex;
   justify-content: space-between;
+}
+.routine-item__buttons--edit {
+  width: 100%;
 }
 .routine-item__button {
   border: 3px solid $black;
@@ -76,11 +80,12 @@ i {
 }
 .season-select__option {
   text-align: center;
-
   border: 2px solid rgb(201, 201, 201);
   font-size: 2.5rem;
   padding: 0.5rem;
+
   label {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,13 +128,69 @@ input[type='radio']:checked + {
   label {
     font-size: 2.5rem;
     margin-right: 0.5rem;
+    display: none;
   }
   input {
     border: none;
-    font-size: 2rem;
+    font-size: 2.25rem;
     background: none;
     border: #003b4a 2px solid;
-    width: 18ch;
+    // width: 24ch;
+    padding: 0.25rem 0.5rem;
   }
   margin-bottom: 1rem;
+}
+
+.routine-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 3vw;
+  width: 85%;
+  height: 85%;
+}
+
+.day {
+  background: #f6f6f6;
+  box-shadow: 0rem 0rem 1rem 0.1rem #d5d5d5;
+  // padding: 0rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $black;
+}
+.day__header {
+  font-family: 'Pacifico', cursive;
+  margin: 1rem 0rem 3.5rem 0rem;
+  font-size: 5rem;
+}
+.day--selected {
+  grid-column: 1/2;
+  grid-row: 1/3;
+}
+
+.activity {
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.activity__time {
+  display: flex;
+  // justify-content: space-between;
+
+  font-size: 1.5rem;
+  justify-content: space-between;
+}
+.activity__header {
+  font-size: 2rem;
+}
+.activity__content {
+  width: 45%;
+}
+.activity__icon {
+  font-size: 6rem;
+}
+.activity__edit {
+  font-size: 2rem;
 }

@@ -28,7 +28,12 @@ const RoutineForm = () => {
         <div>
           <div className='form-group input-group'>
             <label htmlFor='name'>Name:</label>
-            <input onChange={onChange} type='text' name='name' />
+            <input
+              onChange={onChange}
+              type='text'
+              name='name'
+              placeholder='Add Routine'
+            />
           </div>
           <div className='season-select'>
             <input
@@ -37,11 +42,11 @@ const RoutineForm = () => {
               type='radio'
               name='season'
               value='winter'
-              id='winter'
+              id='add-winter'
               checked={season === 'winter' ? true : false}
             />
             <div className='season-select__option' data-season='winter'>
-              <label htmlFor='winter'>
+              <label htmlFor='add-winter'>
                 <i className='fas fa-snowflake'></i>
               </label>
             </div>
@@ -51,11 +56,11 @@ const RoutineForm = () => {
               type='radio'
               name='season'
               value='autumn'
-              id='autumn'
+              id='add-autumn'
             />
             <div className='season-select__option' data-season='autumn'>
-              <label htmlFor='autumn'>
-                <i className='fas fa-mountain'></i>
+              <label htmlFor='add-autumn'>
+                <i class='fab fa-canadian-maple-leaf'></i>
               </label>
             </div>
             <input
@@ -64,10 +69,10 @@ const RoutineForm = () => {
               type='radio'
               name='season'
               value='spring'
-              id='spring'
+              id='add-spring'
             />
             <div className='season-select__option' data-season='spring'>
-              <label htmlFor='spring'>
+              <label htmlFor='add-spring'>
                 <i className='fas fa-leaf'></i>
               </label>
             </div>
@@ -77,10 +82,10 @@ const RoutineForm = () => {
               type='radio'
               name='season'
               value='summer'
-              id='summer'
+              id='add-summer'
             />
             <div className='season-select__option' data-season='summer'>
-              <label htmlFor='summer'>
+              <label htmlFor='add-summer'>
                 <i className='fas fa-sun'></i>
               </label>
             </div>

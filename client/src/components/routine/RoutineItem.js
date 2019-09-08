@@ -44,55 +44,77 @@ const RoutineItem = ({ season = 'winter', routine }) => {
         {state.name === '' ? '_' : state.name}
       </h2>
       {isEditing ? (
-        <form onSubmit={onSubmit}>
-          <div className='form-group'>
-            <label htmlFor='name'>Name:</label>
-            <input
-              onChange={onChange}
-              type='text'
-              name='name'
-              value={state.name}
-            />
+        <form className='routine-form' onSubmit={onSubmit}>
+          <div>
+            <div className='form-group input-group'>
+              <label htmlFor='name'>Name:</label>
+              <input
+                onChange={onChange}
+                type='text'
+                name='name'
+                value={state.name}
+              />
+            </div>
+            <div className='season-select'>
+              <input
+                className='hidden'
+                onChange={onChange}
+                type='radio'
+                name='season'
+                value='winter'
+                id='winter'
+                checked={state.season === 'winter' ? true : false}
+              />
+              <div className='season-select__option' data-season='winter'>
+                <label htmlFor='winter'>
+                  <i className='fas fa-snowflake'></i>
+                </label>
+              </div>
+              <input
+                className='hidden'
+                onChange={onChange}
+                type='radio'
+                name='season'
+                value='autumn'
+                id='autumn'
+                checked={state.season === 'autumn' ? true : false}
+              />
+              <div className='season-select__option' data-season='autumn'>
+                <label htmlFor='autumn'>
+                  <i class='fab fa-canadian-maple-leaf'></i>
+                </label>
+              </div>
+              <input
+                className='hidden'
+                onChange={onChange}
+                type='radio'
+                name='season'
+                value='spring'
+                id='spring'
+                checked={state.season === 'spring' ? true : false}
+              />
+              <div className='season-select__option' data-season='spring'>
+                <label htmlFor='spring'>
+                  <i className='fas fa-leaf'></i>
+                </label>
+              </div>
+              <input
+                className='hidden'
+                onChange={onChange}
+                type='radio'
+                name='season'
+                value='summer'
+                id='summer'
+                checked={state.season === 'summer' ? true : false}
+              />
+              <div className='season-select__option' data-season='summer'>
+                <label htmlFor='summer'>
+                  <i className='fas fa-sun'></i>
+                </label>
+              </div>
+            </div>
           </div>
-          <div className='form-group radio-group'>
-            <input
-              onChange={onChange}
-              type='radio'
-              name='season'
-              value='winter'
-              id='winter'
-              checked={state.season === 'winter' ? true : false}
-            />
-            <label htmlFor='winter'>Winter</label>
-            <input
-              onChange={onChange}
-              type='radio'
-              name='season'
-              value='autumn'
-              id='autumn'
-              checked={state.season === 'autumn' ? true : false}
-            />
-            <label htmlFor='autumn'>Autumn</label>
-            <input
-              onChange={onChange}
-              type='radio'
-              name='season'
-              value='spring'
-              id='spring'
-              checked={state.season === 'spring' ? true : false}
-            />
-            <label htmlFor='spring'>Spring</label>
-            <input
-              onChange={onChange}
-              type='radio'
-              name='season'
-              value='summer'
-              id='summer'
-              checked={state.season === 'summer' ? true : false}
-            />
-            <label htmlFor='summer'>Summer</label>
-          </div>
-          <div className='routine-item__buttons'>
+          <div className='routine-item__buttons routine-item__buttons--edit'>
             <button className='routine-item__button btn' onClick={onDelete}>
               Delete
             </button>

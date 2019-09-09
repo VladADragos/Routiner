@@ -1,11 +1,10 @@
 import React from 'react';
 
 const Activity = props => {
-  console.log(props);
   return (
     <section className='activity'>
       <div className='activity__icon'>
-        <i class={`fab fa-${props.activity}`}></i>
+        <i className={`fab fa-${props.activity}`}></i>
       </div>
       <div className='activity__content'>
         <h3 className='activity__header'>Activity</h3>
@@ -15,7 +14,7 @@ const Activity = props => {
         </div>
       </div>
       <button className='activity__edit btn'>
-        <i class='fas fa-ellipsis-v'></i>
+        <i className='fas fa-ellipsis-v'></i>
       </button>
     </section>
   );

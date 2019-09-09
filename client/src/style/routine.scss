@@ -171,16 +171,22 @@ input[type='radio']:checked + {
 
 .activity {
   display: flex;
-  width: 90%;
+  width: 100%;
   align-items: center;
   justify-content: space-evenly;
 }
 .activity__time {
   display: flex;
-  // justify-content: space-between;
-
   font-size: 1.5rem;
   justify-content: space-between;
+  input {
+    // width: 12ch;
+    font-size: 1.8rem;
+    border: none;
+    border: 2px solid $black;
+    background: none;
+    // padding: 0.25rem;
+  }
 }
 .activity__header {
   font-size: 2rem;
@@ -191,6 +197,28 @@ input[type='radio']:checked + {
 .activity__icon {
   font-size: 6rem;
 }
+.activity__add {
+  font-size: 2rem;
+  border-radius: 100rem;
+  transition: all 100ms ease-in-out;
+  &:hover {
+    padding: 0.8rem 1.1rem;
+    background: $black;
+    color: $white;
+    font-size: 2.7rem;
+  }
+}
 .activity__edit {
   font-size: 2rem;
+}
+.activity__select {
+  font-size: 2.3rem;
+  border: none;
+  background: none;
+  border-bottom: 2px solid $black;
+  text-transform: capitalize;
+}
+.activity__option {
+  font-size: 2rem;
+  text-transform: capitalize;
 }

@@ -3,7 +3,7 @@ import RoutineContext from './routineContext';
 import RoutineReducer from './routineReducer';
 // import { Activity } from '../types';
 import uuid from 'uuid/v4';
-import { Routine } from '../types';
+import { Routine, Activity } from '../types';
 import axios from 'axios';
 
 const RoutineState = props => {
@@ -15,10 +15,7 @@ const RoutineState = props => {
 
   const [state, dispatch] = useReducer(RoutineReducer, initialState);
 
-  const { routines, current, isLoading } = state;
-
   // load user routines
-
   const loadRoutines = async () => {
     try {
       const res = await axios.get('/api/routines');
@@ -29,8 +26,6 @@ const RoutineState = props => {
   };
   const loadRoutine = async id => {
     try {
-      // const res = await axios.get(`/api/routines?${id}`);
-      // dispatch({ type: Routine.LOAD_ONE, payload: res.data });
       dispatch({ type: Routine.LOAD_ONE, payload: id });
     } catch (err) {
       console.log(err);
@@ -61,11 +56,35 @@ const RoutineState = props => {
   const clearSelectedRoutine = routine => {
     dispatch({ type: Routine.CLEAR_SELECTED });
   };
+
+  const addActivity = ({ name, from, to }) => {
+    const id = uuid();
+
+    const newActivity = { id, name, from, to };
+
+    dispatch({ type: Activity.ADD, payload: newActivity });
+  };
+  const removeActivity = ({ name, from, to }) => {
+    const id = uuid();
+
+    const newActivity = { id, name, from, to };
+
+    dispatch({ type: Activity.ADD, payload: newActivity });
+  };
+  const updateActivity = ({ name, from, to }) => {
+    const id = uuid();
+
+    const newActivity = { id, name, from, to };
+
+    dispatch({ type: Activity.ADD, payload: newActivity });
+  };
+
   return (
     <RoutineContext.Provider
       value={{
-        routines,
-        current,
+        routines: state.routines,
+        current: state.current,
+        isLoading: state.isLoading,
         loadRoutines,
         loadRoutine,
         addRoutine,
@@ -73,7 +92,9 @@ const RoutineState = props => {
         updateRoutine,
         selectRoutine,
         clearSelectedRoutine,
-        isLoading
+        addActivity,
+        updateActivity,
+        removeActivity
       }}>
       {props.children}
     </RoutineContext.Provider>

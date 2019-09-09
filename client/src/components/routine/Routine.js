@@ -4,6 +4,7 @@ import Navbar from '../layout/Navbar';
 import RoutineContext from '../../context/routine/routineContext';
 import UserContext from '../../context/user/userContext';
 import Activity from './Activity';
+import ActivityForm from './ActivityForm';
 
 const Routine = props => {
   const routineContext = useContext(RoutineContext);
@@ -29,6 +30,8 @@ const Routine = props => {
         <div className='routine-grid'>
           <div className='day day--selected'>
             <h2 className='day__header'>Monday</h2>
+
+            <ActivityForm />
             <Activity activity='angular' />
             <Activity activity='vuejs' />
             <Activity activity='raspberry-pi' />

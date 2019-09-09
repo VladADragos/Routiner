@@ -1,4 +1,4 @@
-import { Routine } from '../types';
+import { Routine, Activity } from '../types';
 export default (state, { type, payload }) => {
   switch (type) {
     case Routine.LOAD_ALL:
@@ -29,6 +29,20 @@ export default (state, { type, payload }) => {
       return {
         ...state,
         current: payload
+      };
+    case Activity.ADD:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          days: {
+            ...state.current.days,
+            [payload.day]: [
+              payload.activity,
+              ...state.current.days[payload.day]
+            ]
+          }
+        }
       };
     default:
       return state;

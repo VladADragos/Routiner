@@ -37,6 +37,9 @@ const Routine = props => {
             <Activity activity='raspberry-pi' />
             <Activity activity='raspberry-pi' />
             <Activity activity='python' />
+            {current.days.monday.map(activity => (
+              <Activity activity={activity.icon} />
+            ))}
           </div>
           <div className='day'>asd</div>
           <div className='day'>asd</div>

@@ -57,17 +57,21 @@ const RoutineState = props => {
     dispatch({ type: Routine.CLEAR_SELECTED });
   };
 
-  const addActivity = ({ name, from, to }) => {
+  const addActivity = (scheduleId, day, { name, icon, from, to }) => {
     const id = uuid();
 
-    const newActivity = { id, name, from, to };
+    const newActivity = { id, name, icon, from, to };
 
-    dispatch({ type: Activity.ADD, payload: newActivity });
+    dispatch({
+      type: Activity.ADD,
+      payload: { day, activity: newActivity }
+    });
   };
-  const removeActivity = ({ name, from, to }) => {
+
+  const removeActivity = ({ name, icon, from, to }) => {
     const id = uuid();
 
-    const newActivity = { id, name, from, to };
+    const newActivity = { id, name, icon, from, to };
 
     dispatch({ type: Activity.ADD, payload: newActivity });
   };

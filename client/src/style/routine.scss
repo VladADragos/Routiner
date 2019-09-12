@@ -44,9 +44,10 @@
   width: 100%;
 }
 .routine-item__button {
-  border: 3px solid $black;
+  border: 2px solid $black;
   padding: 0.2rem 2rem;
   font-size: 2rem;
+  font-weight: 600;
   &:hover {
     color: $white;
     background: $black;
@@ -161,8 +162,9 @@ input[type='radio']:checked + {
 }
 .day__header {
   font-family: 'Pacifico', cursive;
-  margin: 1rem 0rem 3.5rem 0rem;
+  margin: 1rem 0rem 1rem 0rem;
   font-size: 5rem;
+  text-transform: capitalize;
 }
 .day--selected {
   grid-column: 1/2;
@@ -174,6 +176,7 @@ input[type='radio']:checked + {
   width: 100%;
   align-items: center;
   justify-content: space-evenly;
+  position: relative;
 }
 .activity__time {
   display: flex;
@@ -202,10 +205,10 @@ input[type='radio']:checked + {
   border-radius: 100rem;
   transition: all 100ms ease-in-out;
   &:hover {
-    padding: 0.8rem 1.1rem;
-    background: $black;
-    color: $white;
-    font-size: 2.7rem;
+    // padding: 0.8rem 1.1rem;
+    // background: $black;
+    // color: $white;
+    // font-size: 2.7rem;
   }
 }
 .activity__edit {
@@ -221,4 +224,34 @@ input[type='radio']:checked + {
 .activity__option {
   font-size: 2rem;
   text-transform: capitalize;
+}
+.activity__settings {
+  position: absolute;
+  top: 50%;
+  left: 105%;
+  transform: translate(-30%, -50%);
+  background: #f6f6f6;
+  box-shadow: 0rem 0rem 1rem 0.1rem #d5d5d5;
+  // border: 2px solid $black;
+  padding: 1rem 3rem;
+}
+.activity__settings-container {
+  position: relative;
+}
+
+.activity__settings-option {
+  font-size: 2rem;
+  margin: 0.5rem 0rem;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.day__button {
+  font-size: 2.25rem;
+  font-weight: 600;
+  border: 2px solid $black;
+  &:hover {
+    background: $black;
+    color: $white;
+  }
 }

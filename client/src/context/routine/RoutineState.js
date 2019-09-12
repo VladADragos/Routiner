@@ -15,11 +15,18 @@ const RoutineState = props => {
 
   const [state, dispatch] = useReducer(RoutineReducer, initialState);
 
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
   // load user routines
   const loadRoutines = async () => {
     try {
       const res = await axios.get('/api/routines');
       dispatch({ type: Routine.LOAD_ALL, payload: res.data });
+      console.log('routines loaded');
     } catch (err) {
       console.log(err);
     }
@@ -57,23 +64,34 @@ const RoutineState = props => {
     dispatch({ type: Routine.CLEAR_SELECTED });
   };
 
-  const addActivity = (scheduleId, day, { name, icon, from, to }) => {
-    const id = uuid();
-
-    const newActivity = { id, name, icon, from, to };
-
-    dispatch({
-      type: Activity.ADD,
-      payload: { day, activity: newActivity }
-    });
+  const addActivity = async (routineId, day, activity) => {
+    try {
+      const res = await axios.post(
+        '/api/activities',
+        { activity, routineId, day },
+        config
+      );
+      console.log(res.data);
+      dispatch({
+        type: Activity.ADD,
+        payload: { day, activity: res.data }
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const removeActivity = ({ name, icon, from, to }) => {
-    const id = uuid();
-
-    const newActivity = { id, name, icon, from, to };
-
-    dispatch({ type: Activity.ADD, payload: newActivity });
+  const removeActivity = async (activityId, day, routineId) => {
+    try {
+      await axios.delete(
+        `/api/activities/${activityId}`,
+        { data: { routineId, day } },
+        config
+      );
+      dispatch({ type: Activity.REMOVE, payload: { day, activityId } });
+    } catch (err) {
+      console.log(err);
+    }
   };
   const updateActivity = ({ name, from, to }) => {
     const id = uuid();

@@ -44,6 +44,21 @@ export default (state, { type, payload }) => {
           }
         }
       };
+    case Activity.REMOVE:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          days: {
+            ...state.current.days,
+            [payload.day]: [
+              ...state.current.days[payload.day].filter(
+                activity => activity._id !== payload.activityId
+              )
+            ]
+          }
+        }
+      };
     default:
       return state;
   }

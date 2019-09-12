@@ -1,19 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const Routine = require('../models/Routine');
+const RoutineModel = require('../models/Routine');
+const Routine = RoutineModel.routine;
+const Activity = RoutineModel.activity;
 const auth = require('../middleware/auth');
-
 // @route   POST api/activities
 // @desc    Adds activity
 // @access  Private
 router.post('/', auth, async (req, res) => {
-  const { name, from, to, day, routineId } = req.body;
-  let activity = {
-    name: name,
-    from: from,
-    to: to
-  };
+  const { activity, routineId, day } = req.body;
 
+  const { name, icon, from, to } = activity;
+  const newActivity = new Activity({ name, icon, from, to });
   let routine = await Routine.findById(routineId);
 
   // checks if routine exists
@@ -24,11 +22,11 @@ router.post('/', auth, async (req, res) => {
     return res.status(401).json({ msg: 'Not authorized' });
   }
 
-  routine.days[day].push(activity);
+  routine.days[day].push(newActivity);
 
   routine.save();
-  res.json(activity);
-
+  console.log(newActivity);
+  res.json(newActivity);
   try {
   } catch (err) {
     console.error(err.message);
@@ -73,7 +71,13 @@ router.put('/:id', auth, async (req, res) => {
 // @desc    Deletes activity
 // @access  Private
 router.delete('/:id', auth, async (req, res) => {
-  const { day, routineId } = req.body;
+  const { routineId, day } = req.body;
+
+  console.log(req.body);
+
+  console.log(req.params.id);
+  console.log(day);
+  console.log(routineId);
 
   try {
     let routine = await Routine.findById(routineId);

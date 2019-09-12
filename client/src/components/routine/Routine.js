@@ -1,52 +1,106 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useState, useEffect } from 'react';
 
 import Navbar from '../layout/Navbar';
 import RoutineContext from '../../context/routine/routineContext';
 import UserContext from '../../context/user/userContext';
 import Activity from './Activity';
 import ActivityForm from './ActivityForm';
+import Day from './Day';
 
 const Routine = props => {
   const routineContext = useContext(RoutineContext);
   const userContext = useContext(UserContext);
 
-  const { loadRoutine, loadRoutines, current, isLoading } = routineContext;
+  const {
+    loadRoutine,
+    loadRoutines,
+    current,
+    isLoading,
+    routines,
+    removeRoutine
+  } = routineContext;
   const { loadUser } = userContext;
 
+  const initialState = [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday'
+  ];
+  const [days, setDays] = useState(initialState);
   useEffect(() => {
     const fetchData = async () => {
       await loadUser();
       await loadRoutines();
       await loadRoutine(props.match.params.id);
     };
+
     fetchData();
+
     // eslint-disable-next-line
   }, []);
 
-  if (!isLoading && current != null) {
+  const selectDay = day => {
+    const index = days.indexOf(day);
+
+    // const toDay = days[index];
+    // days[0] = toDay;
+    const [from, to] = [days[0], days[index]];
+
+    days[index] = from;
+    days[0] = to;
+    setDays([...days]);
+    console.log(days);
+  };
+
+  // setDays(Object.keys(current.days));
+
+  if (!isLoading && current !== null) {
+    console.log(current.days[days[0]]);
     return (
       <Fragment>
         <Navbar />
         <div className='routine-grid'>
-          <div className='day day--selected'>
-            <h2 className='day__header'>Monday</h2>
-
-            <ActivityForm />
-            <Activity activity='angular' />
-            <Activity activity='vuejs' />
-            <Activity activity='raspberry-pi' />
-            <Activity activity='raspberry-pi' />
-            <Activity activity='python' />
-            {current.days.monday.map(activity => (
-              <Activity activity={activity.icon} />
-            ))}
-          </div>
-          <div className='day'>asd</div>
-          <div className='day'>asd</div>
-          <div className='day'>asd</div>
-          <div className='day'>asd</div>
+          <Day
+            main={true}
+            activities={current.days[days[0]]}
+            day={days[0]}
+            selectDay={selectDay}
+          />
+          <Day
+            activities={current.days[days[1]]}
+            day={days[1]}
+            selectDay={selectDay}
+          />
+          <Day
+            activities={current.days[days[2]]}
+            day={days[2]}
+            selectDay={selectDay}
+          />
+          <Day
+            activities={current.days[days[3]]}
+            day={days[3]}
+            selectDay={selectDay}
+          />
+          <Day
+            activities={current.days[days[4]]}
+            day={days[4]}
+            selectDay={selectDay}
+          />
+          <Day
+            activities={current.days[days[5]]}
+            day={days[5]}
+            selectDay={selectDay}
+          />
+          <Day
+            activities={current.days[days[6]]}
+            day={days[6]}
+            selectDay={selectDay}
+          />
         </div>
-        ;
       </Fragment>
     );
   } else {

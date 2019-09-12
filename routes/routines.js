@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Routine = require('../models/Routine');
+const RoutineModel = require('../models/Routine');
+const Routine = RoutineModel.routine;
 const auth = require('../middleware/auth');
 
 // @route   GET api/routines

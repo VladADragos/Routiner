@@ -1,5 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://admin:123abc@contact-keeper-9m1pg.gcp.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "123456",
-  "jwtExpirationTime": 360000
-}

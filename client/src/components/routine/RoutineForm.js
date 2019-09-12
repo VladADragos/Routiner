@@ -60,7 +60,7 @@ const RoutineForm = () => {
             />
             <div className='season-select__option' data-season='autumn'>
               <label htmlFor='add-autumn'>
-                <i class='fab fa-canadian-maple-leaf'></i>
+                <i className='fab fa-canadian-maple-leaf'></i>
               </label>
             </div>
             <input

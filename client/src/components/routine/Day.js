@@ -4,7 +4,7 @@ import AddActivity from './AddActivity';
 import RoutineContext from '../../context/routine/routineContext';
 const Day = ({ main, activities, day, selectDay }) => {
   const routineContext = useContext(RoutineContext);
-  const { current, addActivity, removeActivity } = routineContext;
+  const { current, removeActivity } = routineContext;
   const handleSwitch = () => {
     selectDay(day);
   };
@@ -13,7 +13,6 @@ const Day = ({ main, activities, day, selectDay }) => {
     removeActivity(activityId, day, current._id);
   };
   if (main) {
-    console.log(activities);
     return (
       <div className='day day--selected'>
         <h2 className='day__header'>{day}</h2>
@@ -24,6 +23,7 @@ const Day = ({ main, activities, day, selectDay }) => {
             key={activity._id}
             activity={activity}
             remove={handleActivityRemoval}
+            day={day}
           />
         ))}
       </div>
@@ -33,15 +33,31 @@ const Day = ({ main, activities, day, selectDay }) => {
       <div className='day'>
         <h2 className='day__header'>{day}</h2>
 
-        {activities.map(activity => (
-          <div>
-            <Activity
-              key={activity._id}
-              activity={activity}
-              remove={handleActivityRemoval}
-            />
-          </div>
-        ))}
+        {activities[0] && (
+          <Activity
+            key={activities[0]._id}
+            activity={activities[0]}
+            remove={handleActivityRemoval}
+            day={day}
+          />
+        )}
+        {activities[1] && (
+          <Activity
+            key={activities[1]._id}
+            activity={activities[1]}
+            remove={handleActivityRemoval}
+            day={day}
+          />
+        )}
+        {activities[2] && (
+          <Activity
+            key={activities[2]._id}
+            activity={activities[2]}
+            remove={handleActivityRemoval}
+            day={day}
+          />
+        )}
+
         <button className='btn day__button' onClick={handleSwitch}>
           Switch
         </button>

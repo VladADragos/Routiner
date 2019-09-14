@@ -14,6 +14,7 @@ export default (state, { type, payload }) => {
     case User.REGISTER_FAIL:
     case User.AUTH_ERROR:
     case User.LOGOUT:
+      console.log('user logged out');
       localStorage.removeItem('token');
       return {
         ...state,

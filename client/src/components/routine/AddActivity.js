@@ -16,7 +16,7 @@ const AddActivity = ({ day }) => {
   };
   const [activity, setActivity] = useState(initalState);
 
-  const { name, icon, from, to } = activity;
+  const { name, from, to } = activity;
 
   const onChange = e => {
     setActivity({ ...activity, [e.target.name]: e.target.value });

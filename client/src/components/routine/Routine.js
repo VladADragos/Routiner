@@ -3,22 +3,14 @@ import React, { Fragment, useContext, useState, useEffect } from 'react';
 import Navbar from '../layout/Navbar';
 import RoutineContext from '../../context/routine/routineContext';
 import UserContext from '../../context/user/userContext';
-import Activity from './Activity';
-import ActivityForm from './ActivityForm';
+
 import Day from './Day';
 
 const Routine = props => {
   const routineContext = useContext(RoutineContext);
   const userContext = useContext(UserContext);
 
-  const {
-    loadRoutine,
-    loadRoutines,
-    current,
-    isLoading,
-    routines,
-    removeRoutine
-  } = routineContext;
+  const { loadRoutine, loadRoutines, current, isLoading } = routineContext;
   const { loadUser } = userContext;
 
   const initialState = [
@@ -59,49 +51,45 @@ const Routine = props => {
   // setDays(Object.keys(current.days));
 
   if (!isLoading && current !== null) {
-    console.log(current.days[days[0]]);
     return (
-      <Fragment>
-        <Navbar />
-        <div className='routine-grid'>
-          <Day
-            main={true}
-            activities={current.days[days[0]]}
-            day={days[0]}
-            selectDay={selectDay}
-          />
-          <Day
-            activities={current.days[days[1]]}
-            day={days[1]}
-            selectDay={selectDay}
-          />
-          <Day
-            activities={current.days[days[2]]}
-            day={days[2]}
-            selectDay={selectDay}
-          />
-          <Day
-            activities={current.days[days[3]]}
-            day={days[3]}
-            selectDay={selectDay}
-          />
-          <Day
-            activities={current.days[days[4]]}
-            day={days[4]}
-            selectDay={selectDay}
-          />
-          <Day
-            activities={current.days[days[5]]}
-            day={days[5]}
-            selectDay={selectDay}
-          />
-          <Day
-            activities={current.days[days[6]]}
-            day={days[6]}
-            selectDay={selectDay}
-          />
-        </div>
-      </Fragment>
+      <div className='routine-grid'>
+        <Day
+          main={true}
+          activities={current.days[days[0]]}
+          day={days[0]}
+          selectDay={selectDay}
+        />
+        <Day
+          activities={current.days[days[1]]}
+          day={days[1]}
+          selectDay={selectDay}
+        />
+        <Day
+          activities={current.days[days[2]]}
+          day={days[2]}
+          selectDay={selectDay}
+        />
+        <Day
+          activities={current.days[days[3]]}
+          day={days[3]}
+          selectDay={selectDay}
+        />
+        <Day
+          activities={current.days[days[4]]}
+          day={days[4]}
+          selectDay={selectDay}
+        />
+        <Day
+          activities={current.days[days[5]]}
+          day={days[5]}
+          selectDay={selectDay}
+        />
+        <Day
+          activities={current.days[days[6]]}
+          day={days[6]}
+          selectDay={selectDay}
+        />
+      </div>
     );
   } else {
     return <div>Loading...</div>;

@@ -16,7 +16,6 @@ const Auth = props => {
   } = userContext;
 
   useEffect(() => {
-    loadUser();
     if (isAuthenticated) {
       props.history.push('/home');
     }

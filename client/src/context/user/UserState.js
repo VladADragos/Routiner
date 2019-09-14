@@ -10,7 +10,6 @@ const UserState = props => {
     isAuthenticated: null,
     loading: true,
     user: null,
-    routines: null,
     error: null
   };
 

@@ -81,7 +81,7 @@ const RoutineItem = ({ season = 'winter', routine }) => {
               />
               <div className='season-select__option' data-season='autumn'>
                 <label htmlFor='autumn'>
-                  <i class='fab fa-canadian-maple-leaf fa-fw'></i>
+                  <i className='fab fa-canadian-maple-leaf fa-fw'></i>
                 </label>
               </div>
               <input

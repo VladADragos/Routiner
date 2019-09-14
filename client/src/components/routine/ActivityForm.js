@@ -1,87 +1,14 @@
 import React, { useState, useContext } from 'react';
 import RoutineContext from '../../context/routine/routineContext';
-const ActivityForm = ({ day }) => {
+import options from './activityOptions';
+const ActivityForm = ({ day, edit, values }) => {
   const routineContext = useContext(RoutineContext);
 
-  const { current, addActivity } = routineContext;
+  const { current, addActivity, updateActivity } = routineContext;
 
   const id = current._id;
 
-  const options = {
-    Angular: {
-      name: 'Angular',
-      icon: 'fab fa-angular'
-    },
-    Php: {
-      name: 'Php',
-      icon: 'fab fa-php'
-    },
-    Python: {
-      name: 'Python',
-      icon: 'fab fa-python'
-    },
-    Raspberrypi: {
-      name: 'Raspberrypi',
-      icon: 'fab fa-raspberry-pi'
-    },
-    Vue: {
-      name: 'Vue',
-      icon: 'fab fa-vuejs'
-    },
-    React: {
-      name: 'React',
-      icon: 'fab fa-react'
-    },
-    Node: {
-      name: 'Node',
-      icon: 'fab fa-node-js'
-    },
-    Sass: {
-      name: 'Sass',
-      icon: 'fab fa-sass'
-    },
-    JavaScript: {
-      name: 'JavaScript',
-      icon: 'fab fa-js'
-    },
-    Ember: {
-      name: 'Ember',
-      icon: 'fab fa-ember'
-    },
-    Docker: {
-      name: 'Docker',
-      icon: 'fab fa-docker'
-    },
-    Css: {
-      name: 'Css',
-      icon: 'fab fa-css3-alt'
-    },
-    Wordpress: {
-      name: 'Wordpress',
-      icon: 'fab fa-wordpress-simple'
-    },
-    Break: {
-      name: 'Break',
-      icon: 'fas fa-mug-hot'
-    },
-    Breakfast: {
-      name: 'Breakfast',
-      icon: 'fas fa-bacon'
-    },
-    Lunch: {
-      name: 'Lunch',
-      icon: 'fas fa-pizza-slice'
-    },
-    Dinner: {
-      name: 'Dinner',
-      icon: 'fas fa-pizza-slice'
-    },
-    Sleep: {
-      name: 'Sleep',
-      icon: 'fas fa-bed'
-    }
-  };
-  const initalState = {
+  const initalState = values || {
     name: '',
     from: '',
     icon: '',
@@ -98,14 +25,13 @@ const ActivityForm = ({ day }) => {
   const onSubmit = e => {
     e.preventDefault();
 
-    const newActivity = {
-      name,
-      icon: options[name].icon,
-      from,
-      to
-    };
-    addActivity(id, day, newActivity);
-    setActivity(initalState);
+    if (!edit) {
+      addActivity(id, day, activity);
+      setActivity(initalState);
+    } else {
+      updateActivity(activity, current._id, day);
+      edit();
+    }
   };
 
   return (
@@ -118,11 +44,17 @@ const ActivityForm = ({ day }) => {
         )}
       </div>
       <div className='activity__content'>
-        <select className='activity__select' name='name' onChange={onChange}>
+        <select
+          className='activity__select'
+          name='name'
+          onChange={onChange}
+          value={values.name}>
           {Object.values(options).map(option => (
             <option
+              //   selected={values && values.name == option.name ? true : false}
               className='activity__option'
               value={option.name}
+              name={option.name}
               key={option.name}>
               {option.name}
             </option>
@@ -140,7 +72,11 @@ const ActivityForm = ({ day }) => {
         </div>
       </div>
       <button className='activity__add btn'>
-        <i className='fas fa-plus'></i>
+        {values ? (
+          <i className='fas fa-check' />
+        ) : (
+          <i className='fas fa-plus' />
+        )}
       </button>
     </form>
   );

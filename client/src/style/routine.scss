@@ -3,7 +3,10 @@
   width: 85%;
   display: grid;
   grid-gap: 6rem;
-  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  // grid-template-columns: repeat(auto-fit, minmax(auto, 400px));
+  grid-template-columns: repeat(4, 1fr);
+  // grid-template-columns: fit-content(40%);
+  // grid-template-columns: repeat(auto-fill, 2fr);
 }
 
 .routine-item {
@@ -20,7 +23,7 @@
   color: #003b4a;
   width: 100%;
   text-align: center;
-  padding: 1rem 0rem;
+  padding: 0.5rem 0rem;
   font-size: 3.5rem;
   // font-weight: 600;
   background: #b3dde8;
@@ -31,6 +34,7 @@
   font-size: 2rem;
   width: 70%;
   margin: 0rem;
+  margin-top: 1rem;
   padding: 0rem;
   list-style: none;
 }
@@ -68,9 +72,8 @@
 }
 .season-select {
   font-size: 1.6rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 .hidden {
   display: none;
@@ -83,7 +86,7 @@ i {
   text-align: center;
   border: 2px solid rgb(201, 201, 201);
   font-size: 2.5rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 
   label {
     cursor: pointer;

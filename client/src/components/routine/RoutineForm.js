@@ -47,7 +47,7 @@ const RoutineForm = () => {
             />
             <div className='season-select__option' data-season='winter'>
               <label htmlFor='add-winter'>
-                <i className='fas fa-snowflake'></i>
+                <i className='fas fa-snowflake fa-fw'></i>
               </label>
             </div>
             <input
@@ -60,7 +60,7 @@ const RoutineForm = () => {
             />
             <div className='season-select__option' data-season='autumn'>
               <label htmlFor='add-autumn'>
-                <i className='fab fa-canadian-maple-leaf'></i>
+                <i className='fab fa-canadian-maple-leaf fa-fw'></i>
               </label>
             </div>
             <input
@@ -73,7 +73,7 @@ const RoutineForm = () => {
             />
             <div className='season-select__option' data-season='spring'>
               <label htmlFor='add-spring'>
-                <i className='fas fa-leaf'></i>
+                <i className='fas fa-leaf fa-fw'></i>
               </label>
             </div>
             <input
@@ -86,7 +86,7 @@ const RoutineForm = () => {
             />
             <div className='season-select__option' data-season='summer'>
               <label htmlFor='add-summer'>
-                <i className='fas fa-sun'></i>
+                <i className='fas fa-sun fa-fw'></i>
               </label>
             </div>
           </div>

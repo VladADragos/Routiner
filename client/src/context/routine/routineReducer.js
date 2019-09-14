@@ -59,6 +59,28 @@ export default (state, { type, payload }) => {
           }
         }
       };
+    case Activity.UPDATE:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          days: {
+            ...state.current.days,
+            [payload.day]: [
+              ...state.current.days[payload.day].map(activity => {
+                return activity._id === payload.activity._id
+                  ? {
+                      _id: payload.activity._id,
+                      name: payload.activity.name,
+                      from: payload.activity.from,
+                      to: payload.activity.to
+                    }
+                  : activity;
+              })
+            ]
+          }
+        }
+      };
     default:
       return state;
   }

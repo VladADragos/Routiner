@@ -19,8 +19,6 @@ const Landing = props => {
   if (!isLoading) {
     return (
       <Fragment>
-        <Navbar />
-
         <div className='routines-grid'>
           <RoutineForm />
           {routines.map(routine => (

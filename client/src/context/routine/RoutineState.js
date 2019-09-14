@@ -26,7 +26,6 @@ const RoutineState = props => {
     try {
       const res = await axios.get('/api/routines');
       dispatch({ type: Routine.LOAD_ALL, payload: res.data });
-      console.log('routines loaded');
     } catch (err) {
       console.log(err);
     }
@@ -39,22 +38,30 @@ const RoutineState = props => {
     }
   };
 
-  const addRoutine = ({ name, season }) => {
-    const id = uuid();
-    const newRoutine = {
-      id,
-      name,
-      season
-    };
-
-    dispatch({ type: Routine.ADD, payload: newRoutine });
+  const addRoutine = async routine => {
+    const res = await axios.post('/api/routines', routine, config);
+    dispatch({ type: Routine.ADD, payload: res.data });
   };
-  const removeRoutine = id => {
-    dispatch({ type: Routine.REMOVE, payload: id });
+  const removeRoutine = async id => {
+    try {
+      await axios.delete(`/api/routines/${id}`);
+      dispatch({ type: Routine.REMOVE, payload: id });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const updateRoutine = routine => {
-    dispatch({ type: Routine.UPDATE, payload: routine });
+  const updateRoutine = async routine => {
+    try {
+      const res = await axios.put(
+        `/api/routines/${routine._id}`,
+        routine,
+        config
+      );
+      dispatch({ type: Routine.UPDATE, payload: res.data });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const selectRoutine = routine => {
@@ -71,7 +78,6 @@ const RoutineState = props => {
         { activity, routineId, day },
         config
       );
-      console.log(res.data);
       dispatch({
         type: Activity.ADD,
         payload: { day, activity: res.data }
@@ -93,12 +99,20 @@ const RoutineState = props => {
       console.log(err);
     }
   };
-  const updateActivity = ({ name, from, to }) => {
-    const id = uuid();
-
-    const newActivity = { id, name, from, to };
-
-    dispatch({ type: Activity.ADD, payload: newActivity });
+  const updateActivity = async (activity, routineId, day) => {
+    try {
+      const res = await axios.put(
+        `/api/activities/${activity._id}`,
+        { routineId, day, ...activity },
+        config
+      );
+      dispatch({
+        type: Activity.UPDATE,
+        payload: { routineId, day, activity: res.data }
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

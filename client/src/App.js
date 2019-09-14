@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './App.scss';
 import Landing from './components/pages/Landing';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NotFound from './components/pages/NotFound';
-// import Navbar from './components/layout/Navbar';
-// import Login from './components/pages/Login';
 import UserState from './context/user/UserState';
 import RoutineState from './context/routine/RoutineState';
 import AlertState from './context/alert/AlertState';
@@ -13,7 +11,8 @@ import Auth from './components/auth/Auth';
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Routine from './components/routine/Routine';
-
+import Navbar from './components/layout/Navbar';
+import About from './components/pages/About';
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -28,9 +27,13 @@ function App() {
               <Alerts />
               <Switch>
                 <Route exact path='/' component={Auth} />
-                <PrivateRoute exact path='/home' component={Landing} />
-                <PrivateRoute exact path='/routine/:id' component={Routine} />
-                <Route component={NotFound} />
+                <Fragment>
+                  <Navbar />
+                  <Route exact path='/about' component={About} />
+                  <PrivateRoute exact path='/home' component={Landing} />
+                  <PrivateRoute exact path='/routine/:id' component={Routine} />
+                  {/* <Route component={NotFound} /> */}
+                </Fragment>
               </Switch>
             </div>
           </Router>

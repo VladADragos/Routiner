@@ -20,7 +20,7 @@ const Activity = ({ activity, remove, day }) => {
     return (
       <section className='activity'>
         <div className='activity__icon'>
-          <i className={`fab fa-${options[activity.name].icon} fa-fw`} />
+          <i className={`${options[activity.name].icon} fa-fw`} />
         </div>
         <div className='activity__content'>
           <h3 className='activity__header'>{activity.name}</h3>

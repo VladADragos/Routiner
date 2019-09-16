@@ -38,8 +38,8 @@ export default (state, { type, payload }) => {
           days: {
             ...state.current.days,
             [payload.day]: [
-              payload.activity,
-              ...state.current.days[payload.day]
+              ...state.current.days[payload.day],
+              payload.activity
             ]
           }
         }

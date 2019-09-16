@@ -53,23 +53,23 @@ const options = {
   },
   Break: {
     name: 'Break',
-    icon: 'fas fa-mug-hot'
+    icon: 'fa fa-mug-hot'
   },
   Breakfast: {
     name: 'Breakfast',
-    icon: 'fas fa-bacon'
+    icon: 'fa fa-bacon'
   },
   Lunch: {
     name: 'Lunch',
-    icon: 'fas fa-pizza-slice'
+    icon: 'fa fa-pizza-slice'
   },
   Dinner: {
     name: 'Dinner',
-    icon: 'fas fa-pizza-slice'
+    icon: 'fa fa-pizza-slice'
   },
   Sleep: {
     name: 'Sleep',
-    icon: 'fas fa-bed'
+    icon: 'fa fa-bed'
   }
 };
 

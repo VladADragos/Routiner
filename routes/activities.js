@@ -25,7 +25,6 @@ router.post('/', auth, async (req, res) => {
   routine.days[day].push(newActivity);
 
   routine.save();
-  console.log(newActivity);
   res.json(newActivity);
   try {
   } catch (err) {

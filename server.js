@@ -3,6 +3,7 @@ server.js serves as the entry file for the server
 */
 
 const express = require('express');
+const path = require('path');
 
 const connectDB = require('./config/db');
 
@@ -30,6 +31,13 @@ app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/routines', routines);
 app.use('/api/activities', activities);
+
+if (process.env.NODE_DEV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'cleint', 'build', 'index.html'))
+  );
+}
 
 // uses env port when deployed, otherwise 5000
 const PORT = process.env.PORT || 5000;

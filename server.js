@@ -22,9 +22,9 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 // root endpoint
-app.get('/', async (req, res) => {
-  res.send('routiner root endpoint');
-});
+// app.get('/', async (req, res) => {
+//   res.send('routiner root endpoint');
+// });
 
 // routes
 app.use('/api/users', users);

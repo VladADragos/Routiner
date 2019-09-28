@@ -3,6 +3,8 @@ const router = express.Router();
 const RoutineModel = require('../models/Routine');
 const Routine = RoutineModel.routine;
 const auth = require('../middleware/auth');
+const sort = require('../utils/sort');
+const genActivityHashTable = require('../utils/genActivityHashTable');
 
 // @route   GET api/routines
 // @desc    Get all users routines
@@ -13,8 +15,20 @@ router.get('/', auth, async (req, res) => {
       date: -1
     });
 
-    // routine.save();
-    res.json(routines);
+    let _routines = [];
+    routines.forEach(routine=>{
+      let _routine = routine.toObject();
+
+      let hashTable = genActivityHashTable(_routine);
+      let sortedHashTable = sort(hashTable);
+          if(sortedHashTable.length>=2){
+            _routine.biggestActivities = sortedHashTable.slice(0,3);
+          }else{
+            _routine.biggestActivities = sortedHashTable.slice(0,sortedHashTable.length);
+          }
+      _routines.push(_routine);
+    });
+    res.json(_routines);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
@@ -25,7 +39,7 @@ router.get('/', auth, async (req, res) => {
 // @access  Private
 router.get('/:id', auth, async (req, res) => {
   try {
-    const routine = await Routine.find({ _id: req.params.id });
+    const routine = await Routine.findOne({ _id: req.params.id });
 
     res.json(routine);
   } catch (err) {

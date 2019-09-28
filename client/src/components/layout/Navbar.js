@@ -1,9 +1,7 @@
-import React, { Fragment, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import UserContext from '../../context/user/userContext';
+import React, { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
+import UserContext from "../../context/user/userContext";
 const Navbar = () => {
-  // about // login
-
   const userContext = useContext(UserContext);
   const { isAuthenticated, logout } = userContext;
 
@@ -17,7 +15,7 @@ const Navbar = () => {
         <Link to='/about'> About</Link>
       </li>
       <li className='nav-links__link'>
-        <Link to='/'>Login</Link>
+        <Link to='/login'>Login</Link>
       </li>
     </Fragment>
   );

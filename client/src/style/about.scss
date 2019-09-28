@@ -1,0 +1,41 @@
+.about {
+  max-width: 150ch;
+  margin: 3vw 0rem;
+  text-align: center;
+  background: #f6f6f6;
+  box-shadow: 0rem 0rem 0.5rem 0.2rem #cccccc;
+  padding: 3rem 9rem;
+  color: $black;
+}
+
+.about__header {
+  font-size: 9rem;
+  font-weight: bolder;
+  font-style: italic;
+}
+
+.about__sub-header {
+  font-size: 3rem;
+  font-weight: 300;
+}
+.about__sub-sub-header {
+  font-size: 2rem;
+  font-weight: 300;
+  a {
+    text-decoration: underline;
+  }
+}
+.about__text {
+  text-align: left;
+  margin: 2vw 0rem;
+  // width: ch;
+}
+.about__text-header {
+  font-size: 2.5rem;
+  font-weight: 500;
+  font-style: italic;
+}
+.about__text-p {
+  font-size: 2rem;
+  font-weight: 300;
+}

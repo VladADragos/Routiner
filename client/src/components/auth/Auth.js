@@ -71,8 +71,8 @@ const Auth = props => {
   };
 
   return (
-    <div className='Landing'>
-      <h1 className='Landing__header'>
+    <div className='Auth'>
+      <h1 className='Auth__header'>
         Welcome to Routiner<span className='logo-highlight'>.</span>
       </h1>
       <form className='Auth-form' onSubmit={onSubmit}>

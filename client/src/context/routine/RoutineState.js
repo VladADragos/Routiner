@@ -32,7 +32,8 @@ const RoutineState = props => {
   };
   const loadRoutine = async id => {
     try {
-      dispatch({ type: Routine.LOAD_ONE, payload: id });
+      const res = await axios.get(`/api/routines/${id}`);
+      dispatch({ type: Routine.LOAD_ONE, payload: res.data });
     } catch (err) {
       console.log(err);
     }

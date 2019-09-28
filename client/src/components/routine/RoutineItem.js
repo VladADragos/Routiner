@@ -14,8 +14,10 @@ const RoutineItem = ({ season = 'winter', routine }) => {
   const [state, setState] = useState(initialState);
   const { isEditing } = state;
 
-  const onDelete = () => {
+  const onDelete = (e) => {
+    e.preventDefault();
     removeRoutine(routine._id);
+    console.log("deleting routie");
   };
   const onEdit = () => {
     setState({ ...state, isEditing: !isEditing });
@@ -30,6 +32,7 @@ const RoutineItem = ({ season = 'winter', routine }) => {
 
   const onSubmit = e => {
     e.preventDefault();
+    console.log("updatting routie");
     updateRoutine({ _id: routine._id, name: state.name, season: state.season });
     onEdit();
   };
@@ -38,6 +41,7 @@ const RoutineItem = ({ season = 'winter', routine }) => {
     selectRoutine(routine);
     // props.history.push('/home');
   };
+
   return (
     <div className={`routine-item ${state.season}`}>
       <h2 className='routine-item__header'>
@@ -127,13 +131,13 @@ const RoutineItem = ({ season = 'winter', routine }) => {
         </form>
       ) : (
         <Fragment>
-          {' '}
-          <ol className='routine-item__list'>
+          {routine.biggestActivities.length >0 ? <ol className='routine-item__list'>
             <h3>Biggest activities</h3>
-            <li>1. Cpp</li>
-            <li>2. Php</li>
-            <li>3. React</li>
-          </ol>
+            {routine.biggestActivities.map((activity,index) => <li>{index+1}. {activity.activity} {activity.duration >= 60 ? (`${Math.floor(activity.duration/60)} hours`) : (`${activity.duration} minutes`)}</li>)}
+
+          </ol>: <h3>No activities found</h3> }
+          {' '}
+          
           <div className='routine-item__buttons'>
             <Link
               to={`/routine/${routine._id}`}

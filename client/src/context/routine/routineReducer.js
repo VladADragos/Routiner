@@ -13,7 +13,7 @@ export default (state, { type, payload }) => {
     case Routine.LOAD_ONE:
       return {
         ...state,
-        current: state.routines.find(routine => routine._id === payload),
+        current: payload,
         isLoading: false
       };
     case Routine.UPDATE:

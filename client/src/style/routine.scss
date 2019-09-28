@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: baseline;
+  justify-content: space-between;
   background: #f6f6f6;
   box-shadow: 0rem 0rem 0.5rem 0.2rem rgb(204, 204, 204);
 }
@@ -74,6 +74,8 @@
   font-size: 1.6rem;
   display: flex;
   justify-content: space-between;
+
+  margin: 2.5rem 0rem;
 }
 .hidden {
   display: none;

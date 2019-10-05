@@ -1,5 +1,5 @@
-@import './style/reset.scss';
-@import './style/vars.scss';
+@import "./style/reset.scss";
+@import "./style/vars.scss";
 
 a {
   text-decoration: none;
@@ -28,16 +28,32 @@ a {
   justify-content: flex-end;
   align-items: baseline;
 }
-body{
+body {
   background: hsl(208, 15%, 90%);
 }
 
-@import './style/nav.scss';
-@import './style/auth.scss';
-@import './style/routine.scss';
-@import './style/themes.scss';
-@import './style/about.scss';
+.shadow {
+  box-shadow: 0rem 0rem 0.5rem 0.2rem #dbdbdbd7;
+}
+@import "./style/animations.scss";
+@import "./style/nav.scss";
+@import "./style/auth.scss";
+@import "./style/routine.scss";
+@import "./style/themes.scss";
+@import "./style/about.scss";
+@import "./style/landing.scss";
 
 .alert-danger {
-  color: red;
+  margin-top: 2rem;
+  color: rgb(243, 55, 55);
+  align-self: center;
+}
+.alert-warning {
+  animation: warning 0.5s forwards 0s ease-in-out;
+}
+.alert-warning--bottom-border {
+  animation: warning--bottom-border 0.5s forwards 0s ease-in-out;
+}
+.alert {
+  font-size: 2rem;
 }

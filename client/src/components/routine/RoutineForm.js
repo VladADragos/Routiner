@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import RoutineContext from '../../context/routine/routineContext';
+import React, { useContext, useState } from "react";
+import RoutineContext from "../../context/routine/routineContext";
 
 const RoutineForm = () => {
   const routineContext = useContext(RoutineContext);
@@ -8,31 +8,42 @@ const RoutineForm = () => {
 
   const initialState = {
     name: null,
-    season: 'winter'
+    season: "winter"
   };
   const [routine, setRoutine] = useState(initialState);
-
-  const onChange = e =>
-    setRoutine({ ...routine, [e.target.name]: e.target.value });
+  const [isValid, setIsValid] = useState(true);
+  const onChange = e => {
+    if (e.target.value.length <= 22) {
+      setRoutine({ ...routine, [e.target.name]: e.target.value });
+    }
+  };
 
   const onSubmit = e => {
     e.preventDefault();
-    addRoutine(routine);
-    setRoutine(initialState);
+
+    if (routine.name && routine.name.length > 0) {
+      addRoutine(routine);
+      setRoutine(initialState);
+    } else {
+      setIsValid(false);
+      setTimeout(() => {
+        setIsValid(true);
+      }, 1500);
+    }
   };
   const { name, season } = routine;
   return (
     <div className={`routine-item ${season}`}>
-      <h2 className='routine-item__header'> {name ? name : 'Add Routine'}</h2>
+      <h2 className='routine-item__header'> {name ? name : "Add Routine"}</h2>
       <form className='routine-form' onSubmit={onSubmit}>
         <div>
           <div className='form-group input-group'>
-            <label htmlFor='name'>Name:</label>
             <input
               onChange={onChange}
               type='text'
               name='name'
               placeholder='Add Routine'
+              className={!isValid ? "alert-warning" : ""}
             />
           </div>
           <div className='season-select'>
@@ -43,7 +54,7 @@ const RoutineForm = () => {
               name='season'
               value='winter'
               id='add-winter'
-              checked={season === 'winter' ? true : false}
+              checked={season === "winter" ? true : false}
             />
             <div className='season-select__option' data-season='winter'>
               <label htmlFor='add-winter'>

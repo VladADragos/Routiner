@@ -1,35 +1,29 @@
-import React, { useState, useContext, useEffect } from 'react';
-import UserContext from '../../context/user/userContext';
-import AlertContext from '../../context/alert/alertContext';
+import React, { useState, useContext, useEffect } from "react";
+import UserContext from "../../context/user/userContext";
+import AlertContext from "../../context/alert/alertContext";
+import Alerts from "../layout/Alerts";
 const Auth = props => {
   const userContext = useContext(UserContext);
   const alertContext = useContext(AlertContext);
 
   const { setAlert } = alertContext;
-  const {
-    register,
-    login,
-    isAuthenticated,
-    clearErrors,
-    error,
-    loadUser
-  } = userContext;
+  const { register, login, isAuthenticated, clearErrors, error } = userContext;
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push('/home');
+      props.history.push("/home");
     }
-    if (error === 'Invalid credentials') {
-      setAlert(error, 'danger');
+    if (error === "Invalid credentials" || error === "User already exists") {
+      setAlert(error, "danger");
       clearErrors();
     }
     // eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
 
   const initialState = {
-    name: '',
-    password: '',
-    password2: ''
+    name: "",
+    password: "",
+    password2: ""
   };
 
   const [user, setUser] = useState(initialState);
@@ -39,18 +33,18 @@ const Auth = props => {
 
   const fieldsAreValid = () => {
     const requiredPasswordLength = 6;
-    if (name === '' || password === '') {
-      setAlert('Please fill in all fields', 'danger');
+    if (name === "" || password === "") {
+      setAlert("Please fill in all fields", "danger");
       return false;
     }
     if (isRegistering) {
       if (password !== password2) {
-        setAlert('Passwords do not match', 'danger');
+        setAlert("Passwords do not match", "danger");
         return false;
       } else if (password.length < requiredPasswordLength) {
         setAlert(
           `Please enter a ${requiredPasswordLength} character password or longer`,
-          'danger'
+          "danger"
         );
         return false;
       }
@@ -75,6 +69,7 @@ const Auth = props => {
       <h1 className='Auth__header'>
         Welcome to Routiner<span className='logo-highlight'>.</span>
       </h1>
+
       <form className='Auth-form' onSubmit={onSubmit}>
         <div className='form-group'>
           <label className='Auth-form__label' htmlFor='name'>
@@ -111,23 +106,26 @@ const Auth = props => {
             />
           </div>
         )}
+
         <div className='Auth-form__bottom'>
           <input
             type='submit'
             className='Auth-form__submit btn'
-            value={!isRegistering ? 'Login' : 'Register'}
+            value={!isRegistering ? "Login" : "Register"}
           />
           <p className='Auth-form__register-text'>
-            <span className='Auth-form__register-highlight'>or</span>{' '}
+            <span className='Auth-form__register-highlight'>or</span>{" "}
             <a
               className='Auth-form__register-link'
               href='#!'
-              onClick={() => setRegistering(!isRegistering)}>
-              {isRegistering ? 'Login' : 'Register'}
+              onClick={() => setRegistering(!isRegistering)}
+            >
+              {isRegistering ? "Login" : "Register"}
             </a>
           </p>
         </div>
       </form>
+      <Alerts />
     </div>
   );
 };

@@ -1,10 +1,8 @@
-import React, { Fragment, useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from "react";
+import RoutineContext from "../../context/routine/routineContext";
+import UserContext from "../../context/user/userContext";
 
-import Navbar from '../layout/Navbar';
-import RoutineContext from '../../context/routine/routineContext';
-import UserContext from '../../context/user/userContext';
-
-import Day from './Day';
+import Day from "./Day";
 
 const Routine = props => {
   const routineContext = useContext(RoutineContext);
@@ -14,13 +12,13 @@ const Routine = props => {
   const { loadUser } = userContext;
 
   const initialState = [
-    'monday',
-    'tuesday',
-    'wednesday',
-    'thursday',
-    'friday',
-    'saturday',
-    'sunday'
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday"
   ];
   const [days, setDays] = useState(initialState);
   useEffect(() => {

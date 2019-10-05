@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
-import RoutineContext from '../../context/routine/routineContext';
-import options from './activityOptions';
+import React, { useState, useContext } from "react";
+import RoutineContext from "../../context/routine/routineContext";
+import options from "./activityOptions";
 const ActivityForm = ({ day, edit, values }) => {
   const routineContext = useContext(RoutineContext);
 
@@ -9,14 +9,14 @@ const ActivityForm = ({ day, edit, values }) => {
   const id = current._id;
 
   const initalState = values || {
-    name: '',
-    from: '',
-    icon: '',
-    to: ''
+    name: "Select",
+    from: "",
+    to: ""
   };
   const [activity, setActivity] = useState(initalState);
-
-  const { name, icon, from, to } = activity;
+  const [timeWarning, setTimeWarning] = useState({ from: false, to: false });
+  const [activityWarning, setActivityWarning] = useState(false);
+  const { name, from, to } = activity;
 
   const onChange = e => {
     setActivity({ ...activity, [e.target.name]: e.target.value });
@@ -24,20 +24,32 @@ const ActivityForm = ({ day, edit, values }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-
-    if (!edit) {
-      addActivity(id, day, activity);
-      setActivity(initalState);
+    if (name !== "Select") {
+      if (from === "") {
+        setTimeWarning({ ...timeWarning, from: true });
+        setTimeout(() => setTimeWarning({ ...timeWarning, from: false }), 1500);
+      } else if (to === "") {
+        setTimeWarning({ ...timeWarning, to: true });
+        setTimeout(() => setTimeWarning({ ...timeWarning, to: false }), 1500);
+      } else {
+        if (!edit) {
+          addActivity(id, day, activity);
+          setActivity(initalState);
+        } else {
+          updateActivity(activity, current._id, day);
+          edit();
+        }
+      }
     } else {
-      updateActivity(activity, current._id, day);
-      edit();
+      setActivityWarning(true);
+      setTimeout(() => setActivityWarning(false), 1500);
     }
   };
 
   return (
     <form className='activity' onSubmit={onSubmit}>
       <div className='activity__icon'>
-        {name == '' ? (
+        {name === "" ? (
           <i className='far fa-circle fa-fw' />
         ) : (
           <i className={`${options[name].icon} fa-fw`} />
@@ -45,17 +57,22 @@ const ActivityForm = ({ day, edit, values }) => {
       </div>
       <div className='activity__content'>
         <select
-          className='activity__select'
+          className={
+            activityWarning
+              ? "activity__select alert-warning--bottom-border"
+              : "activity__select"
+          }
           name='name'
           onChange={onChange}
-          value={values.name}>
+          value={activity.name}
+        >
           {Object.values(options).map(option => (
             <option
-              //   selected={values && values.name == option.name ? true : false}
               className='activity__option'
               value={option.name}
               name={option.name}
-              key={option.name}>
+              key={option.name}
+            >
               {option.name}
             </option>
           ))}
@@ -63,11 +80,23 @@ const ActivityForm = ({ day, edit, values }) => {
         <div className='activity__time'>
           <p>
             From:
-            <input type='time' name='from' onChange={onChange} value={from} />
+            <input
+              className={timeWarning.from ? "alert-warning" : ""}
+              type='time'
+              name='from'
+              onChange={onChange}
+              value={from}
+            />
           </p>
           <p>
             To:
-            <input type='time' name='to' onChange={onChange} value={to} />
+            <input
+              className={timeWarning.to ? "alert-warning" : ""}
+              type='time'
+              name='to'
+              onChange={onChange}
+              value={to}
+            />
           </p>
         </div>
       </div>

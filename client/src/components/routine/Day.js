@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import Activity from './Activity';
-import AddActivity from './AddActivity';
-import RoutineContext from '../../context/routine/routineContext';
+import React, { useContext } from "react";
+import Activity from "./Activity";
+import RoutineContext from "../../context/routine/routineContext";
+import ActivityForm from "./ActivityForm";
 const Day = ({ main, activities, day, selectDay }) => {
   const routineContext = useContext(RoutineContext);
   const { current, removeActivity } = routineContext;
@@ -16,8 +16,8 @@ const Day = ({ main, activities, day, selectDay }) => {
     return (
       <div className='day day--selected'>
         <h2 className='day__header'>{day}</h2>
-
-        <AddActivity day={day} />
+        <ActivityForm day={day} edit={false} />
+        {/* <AddActivity day={day} /> */}
         {activities.map(activity => (
           <Activity
             key={activity._id}

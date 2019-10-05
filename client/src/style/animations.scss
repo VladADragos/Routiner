@@ -1,0 +1,34 @@
+@keyframes warning {
+  0% {
+    transform: translateX(0px);
+    border: red 2px solid;
+    color: rgb(230, 36, 36);
+  }
+  25% {
+    transform: translateX(30px);
+  }
+
+  75% {
+    transform: translateX(-30px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes warning--bottom-border {
+  0% {
+    transform: translateX(0px);
+    border-bottom: red 2px solid;
+    color: rgb(230, 36, 36);
+  }
+  25% {
+    transform: translateX(30px);
+  }
+
+  75% {
+    transform: translateX(-30px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

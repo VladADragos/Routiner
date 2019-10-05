@@ -1,7 +1,7 @@
-import React, { useContext, useState, Fragment } from 'react';
-import RoutineContext from '../../context/routine/routineContext';
-import { Link } from 'react-router-dom';
-const RoutineItem = ({ season = 'winter', routine }) => {
+import React, { useContext, useState, Fragment } from "react";
+import RoutineContext from "../../context/routine/routineContext";
+import { Link } from "react-router-dom";
+const RoutineItem = ({ season = "winter", routine }) => {
   const routineContext = useContext(RoutineContext);
 
   const { removeRoutine, updateRoutine, selectRoutine } = routineContext;
@@ -12,47 +12,60 @@ const RoutineItem = ({ season = 'winter', routine }) => {
     season: routine.season
   };
   const [state, setState] = useState(initialState);
+  const [isValid, setIsValid] = useState(true);
   const { isEditing } = state;
 
-  const onDelete = (e) => {
+  const onDelete = e => {
     e.preventDefault();
     removeRoutine(routine._id);
-    console.log("deleting routie");
   };
   const onEdit = () => {
     setState({ ...state, isEditing: !isEditing });
   };
 
   const onChange = e => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.value
-    });
+    if (e.target.value.length <= 22) {
+      setState({
+        ...state,
+        [e.target.name]: e.target.value
+      });
+    }
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log("updatting routie");
-    updateRoutine({ _id: routine._id, name: state.name, season: state.season });
-    onEdit();
+
+    if (state.name.length > 0) {
+      updateRoutine({
+        _id: routine._id,
+        name: state.name,
+        season: state.season
+      });
+      onEdit();
+    } else {
+      setIsValid(false);
+      setTimeout(() => {
+        setIsValid(true);
+      }, 1500);
+    }
   };
 
   const onView = () => {
     selectRoutine(routine);
-    // props.history.push('/home');
   };
 
   return (
     <div className={`routine-item ${state.season}`}>
       <h2 className='routine-item__header'>
-        {state.name === '' ? '_' : state.name}
+        {state.name === "" ? "_" : state.name}
       </h2>
+
       {isEditing ? (
         <form className='routine-form' onSubmit={onSubmit}>
           <div>
             <div className='form-group input-group'>
-              <label htmlFor='name'>Name:</label>
               <input
+                className={!isValid ? "alert-warning" : ""}
                 onChange={onChange}
                 type='text'
                 name='name'
@@ -67,7 +80,7 @@ const RoutineItem = ({ season = 'winter', routine }) => {
                 name='season'
                 value='winter'
                 id='winter'
-                checked={state.season === 'winter' ? true : false}
+                checked={state.season === "winter" ? true : false}
               />
               <div className='season-select__option' data-season='winter'>
                 <label htmlFor='winter'>
@@ -81,7 +94,7 @@ const RoutineItem = ({ season = 'winter', routine }) => {
                 name='season'
                 value='autumn'
                 id='autumn'
-                checked={state.season === 'autumn' ? true : false}
+                checked={state.season === "autumn" ? true : false}
               />
               <div className='season-select__option' data-season='autumn'>
                 <label htmlFor='autumn'>
@@ -95,7 +108,7 @@ const RoutineItem = ({ season = 'winter', routine }) => {
                 name='season'
                 value='spring'
                 id='spring'
-                checked={state.season === 'spring' ? true : false}
+                checked={state.season === "spring" ? true : false}
               />
               <div className='season-select__option' data-season='spring'>
                 <label htmlFor='spring'>
@@ -109,7 +122,7 @@ const RoutineItem = ({ season = 'winter', routine }) => {
                 name='season'
                 value='summer'
                 id='summer'
-                checked={state.season === 'summer' ? true : false}
+                checked={state.season === "summer" ? true : false}
               />
               <div className='season-select__option' data-season='summer'>
                 <label htmlFor='summer'>
@@ -127,28 +140,37 @@ const RoutineItem = ({ season = 'winter', routine }) => {
               className='routine-item__button btn'
               value='Save'
             />
-          </div>{' '}
+          </div>{" "}
         </form>
       ) : (
         <Fragment>
-          {routine.biggestActivities.length >0 ? <ol className='routine-item__list'>
-            <h3>Biggest activities</h3>
-            {routine.biggestActivities.map((activity,index) => <li>{index+1}. {activity.activity} {activity.duration >= 60 ? (`${Math.floor(activity.duration/60)} hours`) : (`${activity.duration} minutes`)}</li>)}
-
-          </ol>: <h3>No activities found</h3> }
-          {' '}
-          
+          {routine.biggestActivities.length > 0 ? (
+            <ol className='routine-item__list'>
+              <h3>Biggest activities</h3>
+              {routine.biggestActivities.map((activity, index) => (
+                <li key={activity.activity}>
+                  {index + 1}. {activity.activity}{" "}
+                  {activity.duration >= 60
+                    ? `${Math.floor(activity.duration / 60)} hours`
+                    : `${activity.duration} minutes`}
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <h3>No activities found</h3>
+          )}{" "}
           <div className='routine-item__buttons'>
             <Link
               to={`/routine/${routine._id}`}
               className='routine-item__button btn'
-              onClick={onView}>
+              onClick={onView}
+            >
               View
             </Link>
             <button className='routine-item__button btn' onClick={onEdit}>
               Edit
             </button>
-          </div>{' '}
+          </div>{" "}
         </Fragment>
       )}
     </div>

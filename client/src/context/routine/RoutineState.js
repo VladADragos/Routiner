@@ -1,10 +1,8 @@
-import React, { useReducer } from 'react';
-import RoutineContext from './routineContext';
-import RoutineReducer from './routineReducer';
-// import { Activity } from '../types';
-import uuid from 'uuid/v4';
-import { Routine, Activity } from '../types';
-import axios from 'axios';
+import React, { useReducer } from "react";
+import RoutineContext from "./routineContext";
+import RoutineReducer from "./routineReducer";
+import { Routine, Activity } from "../types";
+import axios from "axios";
 
 const RoutineState = props => {
   const initialState = {
@@ -17,14 +15,14 @@ const RoutineState = props => {
 
   const config = {
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
   };
 
   // load user routines
   const loadRoutines = async () => {
     try {
-      const res = await axios.get('/api/routines');
+      const res = await axios.get("/api/routines");
       dispatch({ type: Routine.LOAD_ALL, payload: res.data });
     } catch (err) {
       console.log(err);
@@ -40,7 +38,7 @@ const RoutineState = props => {
   };
 
   const addRoutine = async routine => {
-    const res = await axios.post('/api/routines', routine, config);
+    const res = await axios.post("/api/routines", routine, config);
     dispatch({ type: Routine.ADD, payload: res.data });
   };
   const removeRoutine = async id => {
@@ -75,7 +73,7 @@ const RoutineState = props => {
   const addActivity = async (routineId, day, activity) => {
     try {
       const res = await axios.post(
-        '/api/activities',
+        "/api/activities",
         { activity, routineId, day },
         config
       );
@@ -132,7 +130,8 @@ const RoutineState = props => {
         addActivity,
         updateActivity,
         removeActivity
-      }}>
+      }}
+    >
       {props.children}
     </RoutineContext.Provider>
   );
